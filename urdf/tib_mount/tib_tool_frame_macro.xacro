@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:macro name="Tool_Frame" params="prefix">
+        <xacro:property name="tool_mesh" value=
+        "package://fanuc_m20ia_tools/meshes/tools/GL1807608_TibiaFibula_L_Reflected_Block_ROSI_Tib_Ref.stl" />
+
+        <!-- Fanuc 'Tool_Frame' frame: tool frame per Fanuc standards -->
+        <link name="${prefix}Tool_Frame">
+            <visual>
+                <!-- <origin xyz="0.01 0.01 0.51" rpy="0 0 0"/> -->
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${tool_mesh}" />
+                </geometry>
+                <xacro:material_fanuc_greyish />
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="${tool_mesh}" />
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+</robot>
