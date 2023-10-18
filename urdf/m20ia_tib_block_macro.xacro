@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+  <!-- Include Fanuc m20ia xacro:macro -->
+  <xacro:include filename="$(find fanuc_m20ia_support)/urdf/m20ia_macro.xacro"/>
+  <!-- Include tibia block tool frame xacro:macro -->
+  <xacro:include filename="$(find fanuc_m20ia_tools)/urdf/tib_mount/tib_tool_frame_macro.xacro"/>
+  
+  <xacro:macro name="fanuc_m20ia_tib_block" params="prefix">
+
+    <!-- instantiate M-20iA and Tool Frame model -->
+    <xacro:fanuc_m20ia prefix="${prefix}" />
+    <xacro:tib_tool prefix="${prefix}" />
+
+    <!-- Attach tibia block tool to Fanuc m20ia model. -->
+    <joint name="${prefix}link_6-Tool_Frame" type="fixed">
+      <origin xyz="0.5095 -0.01 0.01" rpy="${pi} ${-pi/2.0} 0" />
+      <parent link="${prefix}flange" />
+      <child link="${prefix}Tool_Frame" />
+    </joint>
+
+  </xacro:macro>
+</robot>
